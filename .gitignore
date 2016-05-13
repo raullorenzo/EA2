@@ -1,0 +1,18 @@
+node_modules
+public/bower_components/
+public/app/
+.idea/
+public/.idea/
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/shelf
+FreePong_ionic/plugins/
+FreePong_ionic/config.xml
+FreePong_ionic/platforms
+FreePong_ionic/platforms/android/AndroidManifest.xml
+FreePong_ionic/www/lib
+FreePong_ionic/www/img
+
+
