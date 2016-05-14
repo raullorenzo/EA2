@@ -208,7 +208,7 @@ module.exports = function (app) {
                 Usuario.findOne({login: u}, function (err, usuario)
                 {
                     console.log('find '+usuario);
-                    imagen = _base +"/images/" + filename;
+                    imagen ="/images/" + filename;
 
                     usuario.urlfoto = imagen;
 
