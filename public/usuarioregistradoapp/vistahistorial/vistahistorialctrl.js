@@ -1,7 +1,12 @@
 'use strict';
 
 usuarioregistradoapp.factory("Historiales", function ($resource, $stateParams) {
-    return $resource('/historial/ObtenerHisorialesPaginados'); //la url donde queremos consumir
+
+    var box2 = ({
+        login:$stateParams.login
+    });
+    console.log(box2);
+    return $resource('/historial/ObtenerHisorialesPaginados',box2); //la url donde queremos consumir
 });
 usuarioregistradoapp.controller('vistahistorialctrl', ['$state', '$http', '$scope', '$location', 'Historiales', '$stateParams', 'ngTableParams', function ($state, $http, $scope, $location, Usuarios, $stateParams, ngTableParams) {
 

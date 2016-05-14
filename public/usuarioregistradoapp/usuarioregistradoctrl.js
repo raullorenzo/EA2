@@ -23,7 +23,9 @@ usuarioregistradoapp.controller('usuarioregistradoctrl', ['$state', '$http', '$s
         });
     };
     $scope.historial = function () {
-        $state.go('historial');
+        $state.go('historial', {
+            login: login
+        });
     };
 
 }]);

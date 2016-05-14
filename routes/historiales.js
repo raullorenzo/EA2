@@ -4,7 +4,8 @@ module.exports = function (app) {
     var Historial = require('../modelos/historial.js');
 
     ObtenerHistorialesP = function (req, res) {
-        console.log('post /ObtenerHistorialesP');
+
+        console.log(req.query.login);
 
         var sort;
         var sortObject = {};
@@ -37,7 +38,7 @@ module.exports = function (app) {
         };
 
         Historial
-            .find()
+            .find({$or:[{logincreador:req.query.login},{logininvitado:req.query.login}]})
             .filter(filter)
             .order(sort)
             .page(pagination, function (err, historiales) {
