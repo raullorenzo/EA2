@@ -40,7 +40,7 @@ module.exports = function (app) {
                 });
                 console.log(req.params.mesa);
                 Mesa.findOne({nombre: req.params.mesa}, function (err, mesa) {
-                    imagen = _base + "/images/" + filename;
+                    imagen ="/images/" + filename;
                     mesa.urlfoto = imagen;
 
                     mesa.save(function (err) {
