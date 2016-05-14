@@ -33,7 +33,8 @@ usuarioregistradoapp.controller('vistainsertarresultadosctrl', ['$mdDialog','$st
                          'socialshare-provider="facebook"'+
                          'socialshare-type="sharer"'+
                          'socialshare-text="Hola esto es una prueba"'+
-                         'socialshare-url="147.83.7.158:3000"'+
+                         'socialshare-description="Esot es una peuer"'+
+                         'socialshare-url="http://localhost:3000/usuarioregistradoapp/vistainsertarresultados/prueba.html"'+
                          'socialshare-popup-height="300"'+
                          'socialshare-popup-width="400"'+
                          'socialshare-trigger="click">'+
