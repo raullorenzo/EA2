@@ -1,4 +1,4 @@
-usuarioregistradoapp.controller('vistainsertarresultadosctrl', ['$stateParams', '$state', '$scope', '$http',function ($stateParams, $state, $scope, $http) {
+usuarioregistradoapp.controller('vistainsertarresultadosctrl', ['$mdDialog','$stateParams', '$state', '$scope', '$http',function ($mdDialog,$stateParams, $state, $scope, $http) {
     var partidas= new Array();
     var login = $stateParams.login;
     console.log('entro');
@@ -24,6 +24,42 @@ usuarioregistradoapp.controller('vistainsertarresultadosctrl', ['$stateParams', 
             });
         });
 
+    }
+    $scope.showTabDialog = function(ev) {
+        $mdDialog.show({
+                controller: DialogController,
+                template:'<div><button class="btn btn-medium font-bold"'+
+                         'socialshare=""'+
+                         'socialshare-provider="facebook"'+
+                         'socialshare-type="sharer"'+
+                         'socialshare-text="Hola esto es una prueba"'+
+                         'socialshare-url="147.83.7.158:3000"'+
+                         'socialshare-popup-height="300"'+
+                         'socialshare-popup-width="400"'+
+                         'socialshare-trigger="click">'+
+                         '<i class="fa fa-facebook">' +
+                         '</i> Share on Facebook (sharer)'+
+                         '</button></div>',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+            .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                $scope.status = 'You cancelled the dialog.';
+            });
+    };
+    function DialogController($scope, $mdDialog) {
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
     }
 
 }]);

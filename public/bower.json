@@ -22,6 +22,10 @@
     "angular-google-maps": "^2.3.2",
     "ngmap": "^1.17.3",
     "ng-file-upload": "^12.0.4",
-    "angular-file-model": "^0.3.1"
+    "angular-file-model": "^0.3.1",
+    "angular-socialshare": "angularjs-socialshare#^2.1.5",
+    "angular-animate": "^1.5.5",
+    "angular-material": "^1.0.8",
+    "angular-aria": "^1.5.5"
   }
 }
