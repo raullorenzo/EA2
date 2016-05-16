@@ -31,7 +31,7 @@ administradorapp.config(function ($stateProvider, $urlRouterProvider) {
         .state('editar', {
             url: '/editar/:id',
             templateUrl: '../usuarioregistradoapp/vistaeditar/vistaeditar.html',
-            controller: 'editarCtrl'
+            controller: 'editarctrl'
         })
         .state('crearmesa', {
             url: '/crearmesa',
