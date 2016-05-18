@@ -27,7 +27,7 @@
                    value="{{usuario.telefono}}" required/>
             <span ng-show="form.telefono.$dirty && form.telefono.$error.required" class="help-block">El teléfono es necesario</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': form.login.$dirty && form.login.$error.required }">
+        <div class="form-group" ng-class="{ 'has-error': form.login.$dirty && form.login.$error.required }" hidden>
             <label for="loginc">Username</label>
             <input type="text" name="loginc" id="loginc" class="form-control" ng-model="loginc"
                    value="{{usuario.login}}" required/>
@@ -52,7 +52,7 @@
             <button type="submit" class="btn btn-primary"
                     ng-click="update(nombre,apellidos,email,telefono,loginc,password,saldo)">Actualizar
             </button>
-            <a ui-sref="admin" class="btn btn-link">Volver</a>
+            <a ui-sref="inicio" class="btn btn-link">Volver</a>
         </div>
 
     </form>

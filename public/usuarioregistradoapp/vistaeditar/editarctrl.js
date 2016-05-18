@@ -32,7 +32,7 @@ usuarioregistradoapp.controller('editarCtrl', ['$stateParams', '$state', '$http'
                     }
                 );
 
-                $state.go('admin');
+                $state.go('inicio');
             })
             .error(function (error) {
                 swal(
