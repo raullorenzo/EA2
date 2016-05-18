@@ -37,7 +37,7 @@ usuarioregistradoapp.controller('vistainsertarresultadosctrl', ['$mdDialog','$st
                 'socialshare-popup-width="400"'+
                 'socialshare-trigger="click">'+
                 '<i class="fa fa-facebook">' +
-                '</i> Share on Facebook (sharer)'+
+                '</i> Compartir resultado en Facebook'+
                 '</button></div>',
                 parent: angular.element(document.body),
                 clickOutsideToClose:true
