@@ -48,8 +48,8 @@
             template: '<div class="pickadate">' +
             '<div class="pickadate-header">' +
             '<div class="pickadate-controls">' +
-            '<a href="" class="pickadate-prev" ng-click="changeMonth(-1)" ng-show="allowPrevMonth">Siguiente</a>' +
-            '<a href="" class="pickadate-next" ng-click="changeMonth(1)" ng-show="allowNextMonth">Anterior</a>' +
+            '<a href="" class="pickadate-prev" ng-click="changeMonth(-1)" ng-show="allowPrevMonth">Anterior</a>' +
+            '<a href="" class="pickadate-next" ng-click="changeMonth(1)" ng-show="allowNextMonth">Siguiente</a>' +
             '</div>' +
             '<h3 class="pickadate-centered-heading">' +
             '{{currentDate | date:"MMMM yyyy"}}' +
