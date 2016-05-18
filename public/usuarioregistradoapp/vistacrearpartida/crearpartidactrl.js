@@ -1,4 +1,4 @@
-usuarioregistradoapp.controller('crearpartidactrl', ['$stateParams', '$state', '$http', '$scope', '$cookies', 'dateFilter', function ($stateParams, $state, $http, $scope, $cookies, dateFilter) {
+usuarioregistradoapp.controller('crearpartidactrl', [ '$filter','$stateParams', '$state', '$http', '$scope', '$cookies', 'dateFilter', function ($filter,$stateParams, $state, $http, $scope, $cookies, dateFilter) {
     var IDuser = $stateParams.IDuser;
     var IDmesa = $stateParams.IDmesa;
     var login = $stateParams.login;
@@ -11,9 +11,11 @@ usuarioregistradoapp.controller('crearpartidactrl', ['$stateParams', '$state', '
 
     $scope.$watch("date", function (newValue, oldValue) {
 
-
+        console.log(newValue);
+        var fecha = new Date();
+        console.log(fecha);
         $scope.date = newValue;
-
+        if(newValue>=fecha){console.log('la fecha es mayor')}
         if (newValue === oldValue) {
             return;
         }
@@ -76,5 +78,6 @@ usuarioregistradoapp.controller('crearpartidactrl', ['$stateParams', '$state', '
             $scope.partida = partida;
         });
     };
+
 }]);
 

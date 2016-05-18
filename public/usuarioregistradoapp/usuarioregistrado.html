@@ -5,9 +5,13 @@
 <!--[if gt IE 8]><!-->
 <html lang="en" ng-app="usuarioregistradoapp" class="no-js"> <!--<![endif]-->
 <head>
+    <title>freepong</title>
+    <!-- You can use Open Graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -21,7 +25,11 @@
 
     <link rel="stylesheet" type="text/css" href="../bower_components/sweetalert/dist/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="vistacrearpartida/angular-pickadate.css"/>
+
 </head>
+</head>
+<div id="fb-root"></div>
+
 <body>
 <div>
     <nav class="navbar navbar-default navbar-fixed-top" ng-controller="usuarioregistradoctrl">
@@ -74,7 +82,10 @@
 <br>
 <br>
 <br>
+
 <section ui-view></section>
+
+
 
 
 <script src="../bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>

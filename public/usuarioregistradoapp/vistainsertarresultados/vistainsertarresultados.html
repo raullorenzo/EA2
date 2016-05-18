@@ -1,4 +1,4 @@
-<div ng-model="partidas">
+<div ng-model="partidas" ng-model="login" ng-model="resul">
         <table class="table table-condensed">
             <tr>
                 <td>Usuario rival</td>
@@ -15,7 +15,7 @@
                 <td>C:<input type="number" ng-model="juegoscreadorP1"name="juegoscreadorP1" required>I:<input type="number" ng-model="juegosinvitadoP1" name="juegosinvitadoP1" required></td>
                 <td><button type="button" class="btn btn-default" ng-click=insertarresultados(p='P1',partida._id,juegoscreadorP1,juegosinvitadoP1)><span class="glyphicon glyphicon-plus"></span></button></td>
             </tr>
-            <tr ng-show="partida.P2.estadopartida==2">
+            <tr ng-show="(partida.P2.estadopartida==2) && (partida.P2.creador.login== '{{login}}')">
                 <td>{{partida.P2.invitado.login}}</td>
                 <td>{{partida.FechaPartida}}</td>
                 <td>{{partida.IDmesa}}</td>
@@ -104,7 +104,4 @@
                 <td><button type="button" class="btn btn-default" ng-click=insertarresultados(p='P12',partida._id,juegoscreadorP12,juegosinvitadoP12)><span class="glyphicon glyphicon-plus"></span></button></td>
             </tr >
         </table>
-
-
-
 </div>
