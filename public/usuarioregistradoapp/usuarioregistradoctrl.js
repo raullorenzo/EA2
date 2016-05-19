@@ -27,5 +27,9 @@ usuarioregistradoapp.controller('usuarioregistradoctrl', ['$state', '$http', '$s
             login: login
         });
     };
+    $scope.chat = function () {
+        $state.go('chat');
+    };
+
 
 }]);

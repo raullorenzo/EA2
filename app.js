@@ -66,7 +66,7 @@ routes = require('./routes/historiales')(app);
 var router = express.Router();
 var server = require('http').Server(app);
 
-
+var io   = require('socket.io')(server);
 app.use(router);
 
 
@@ -84,6 +84,53 @@ app.get('/auth/facebook/callback',
     });
 app.get('*', function(req, res) {res.sendfile('./public/index.html');});
 
+var onlineUsers = [];
+io.on('connection', function(socket) {
+
+    console.log('New user connected');
+
+    /**
+     * Cada nuevo cliente solicita con este evento la lista
+     * de usuarios conectados en el momento.
+     */
+    socket.on('all online users', function () {
+        socket.emit('all online users', onlineUsers);
+    });
+
+    /**
+     * Cada nuevo socket debera estar a la escucha
+     * del evento 'chat message', el cual se activa
+     * cada vez que un usuario envia un mensaje.
+     *
+     * @param  msg : Los datos enviados desde el cliente a
+     *               través del socket.
+     */
+    socket.on('chat message', function(msg) {
+        io.emit('chat message', msg);
+    });
+
+    /**
+     * Mostramos en consola cada vez que un usuario
+     * se desconecte del sistema.
+     */
+    socket.on('disconnect', function() {
+        onlineUsers.splice(onlineUsers.indexOf(socket.user), 1);
+        io.emit('remove user', socket.user);
+        console.log('User disconnected');
+    });
+
+    /**
+     * Cuando un cliente se conecta, emite este evento
+     * para informar al resto de usuarios que se ha conectado.
+     * @param  {[type]} nuser El nuevo usuarios
+     */
+    socket.on('new user', function (nuser) {
+        socket.user = nuser;
+        onlineUsers.push(nuser);
+        io.emit('new user', nuser);
+    });
+
+});
 server.listen(3000, function () {
     console.log("Servidor escuchando en, http://localhost:3000");
 });

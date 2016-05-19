@@ -27,6 +27,11 @@ usuarioregistradoapp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'vistahistorial/vistahistorial.html',
             controller: 'vistahistorialctrl'
         })
+        .state('chat', {
+            url: '/vistachat',
+            templateUrl: 'vistachat/vistachat.html'
+
+        })
         .state('editar', {
             url: '/editar/:id',
             templateUrl: 'vistaeditar/vistaeditar.html',
