@@ -483,7 +483,9 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
 .controller('ResultadosController', ['$rootScope', '$state', '$scope', '$cordovaOauth', 'API', '$http', '$ionicModal', '$ionicHistory', function ($rootScope, $state, $scope, $cordovaOauth, api, $http, $ionicModal, $ionicHistory) {
     var idusuario = window.localStorage['idusuario'];
     var login = window.localStorage['login'];
+    var partidas = new Object();//
     $scope.login=login;
+    $rootScope.toast2('Cargando Partidas...');
     $http.get(_base+'/partida/ObtenerPartidasconestadodos/' + login).success(function (data) {
       partidas=data;
       console.log(partidas);
@@ -497,18 +499,50 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
           juegosinvitado: juegosinvitado, 
           horario: h
         });
-        console.log(box);
-        $http.put(_base+'/partida/insertartarresultados/'+id, box).success(function (data){
-          var res='2';
-          $scope.resul='1';
-          console.log($scope.resul);
-          $http.get(_base+'/partida/ObtenerPartidasconestadodos/'+login).success(function (data) {
-            partidas=data;
-            console.log(partidas);
-            $scope.partidas=partidas;
+        if((box.juegoscreador == null)||(box.juegosinvitado == null)){
+          $rootScope.toast2('Introduce los resultados!');
+        }
+        else {
+            console.log(box);
+            $http.put(_base+'/partida/insertartarresultados/'+id, box).success(function (data){
+            var res='2';
+            $scope.resul='1';
+            console.log($scope.resul);
+            $http.get(_base+'/partida/ObtenerPartidasconestadodos/'+login).success(function (data) {
+              partidas=data;
+              console.log(partidas);
+              $scope.partidas=partidas;
+            });
           });
-        });
+        }
     };
+}])
+
+// .controller('HistorialController', ['$rootScope', '$state', '$scope', '$cordovaOauth', 'API', '$http', '$ionicModal', '$ionicHistory', function ($rootScope, $state, $scope, $cordovaOauth, api, $http, $ionicModal, $ionicHistory) {
+//     var box2 = ({
+//         login: window.localStorage['login']
+//         //login: $rootScope.login
+//     });
+//     // historial={};
+//     // historiales=[];
+//     console.log(box2);
+//     var historiales = {}
+//     $http.get(_base+'/historial/ObtenerHistorialesLogin',box2).success(function (data) {
+//       historiales=data;
+//       console.log(historiales);
+//       console.log(historiales[0]);
+//       $scope.historiales=historiales;
+//     });
+// }])
+
+.controller('HistorialController', ['$rootScope', '$state', '$scope', '$cordovaOauth', 'API', '$http', '$ionicModal', '$ionicHistory', function ($rootScope, $state, $scope, $cordovaOauth, api, $http, $ionicModal, $ionicHistory) {
+    var login = window.localStorage['login'];
+    $http.get(_base+'/historial/ObtenerHistorialesLogin/'+login).success(function (data) {
+      historiales=data;
+      console.log(historiales);
+      console.log(historiales[0]);
+      $scope.historiales=historiales;
+    });
 }])
 
 .controller('LoginController', ['$rootScope', '$state', '$scope', '$cordovaOauth', 'API', '$http', '$ionicModal', '$ionicHistory', function ($rootScope, $state, $scope, $cordovaOauth, api, $http, $ionicModal, $ionicHistory) {
@@ -551,7 +585,7 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
               window.localStorage['telefono'] = data.telefono;
               window.localStorage['urlfoto'] = data.urlfoto;
               window.localStorage['created'] = data.created;
-
+              $rootScope.login = data.login;
               $rootScope.urlfoto = data.urlfoto;
               $rootScope.nombre = data.nombre;
               $rootScope.apellidos = data.apellidos;
@@ -635,7 +669,6 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
                 $rootScope.usuariotwitterid = user.user_id;
                 console.log(user);
                 $rootScope.tipologin = "twitter";
-
                 $state.go('freepong.usuarios');
             },
             function (error) {

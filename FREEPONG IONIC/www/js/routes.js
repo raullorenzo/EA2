@@ -48,6 +48,15 @@ angular.module('freepong.routes', [])
         }
       }
     })
+    .state('freepong.historial', {
+      url: "/historial",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/historial.html",
+          controller: 'HistorialController'
+        }
+      }
+    })
     .state('freepong.crearPartida', {
       url: "/crearPartida",
       views: {
