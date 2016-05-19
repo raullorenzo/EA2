@@ -3,7 +3,7 @@ module.exports = function (app) {
     var mongoose = require('mongoose');
     var Historial = require('../modelos/historial.js');
 
-    ObtenerPartidasconestadodos= function (req, res){
+    ObtenerHistorialesL= function (req, res){
         console.log('GET/ObtenerHistorialesLogin/'+ req.params.login);
         Historial.find({$or:[{logincreador:req.query.login},{logininvitado:req.query.login}]},function (err, historiales){
             if (err) return res.send(500, err.message);
@@ -63,5 +63,5 @@ module.exports = function (app) {
     };
 
     app.get('/historial/ObtenerHisorialesPaginados', ObtenerHistorialesP);
-    app.get('/historial/ObtenerHistorialesLogin', ObtenerHistorialesLogin);
+    app.get('/historial/ObtenerHistorialesLogin', ObtenerHistorialesL);
 }
