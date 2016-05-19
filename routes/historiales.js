@@ -3,6 +3,15 @@ module.exports = function (app) {
     var mongoose = require('mongoose');
     var Historial = require('../modelos/historial.js');
 
+
+    ObtenerHistorialesLogin = function (req, res) {
+        console.log('GET/ObtenerHistorialesLogin/'+ req.params.login);
+        Historial.find({$or:[{logincreador:req.query.login},{logininvitado:req.query.login}]}, function (err, historiales) {
+            if (err) return res.send(500, err.message);
+            res.status(200).jsonp(historiales);
+        });
+    };
+
     ObtenerHistorialesP = function (req, res) {
 
         console.log(req.query.login);
@@ -54,4 +63,5 @@ module.exports = function (app) {
     };
 
     app.get('/historial/ObtenerHisorialesPaginados', ObtenerHistorialesP);
+    app.get('/historial/ObtenerHistorialesLogin', ObtenerHistorialesLogin);
 }
