@@ -3,14 +3,23 @@
       <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
     <ion-content class="has-header">
-    	<div>
+    	<!-- <div>
     	  <label class="item item-input">
     		<span class="input-label">Buscar Jugador:</span>
     		<input type="text" ng-model="searchText">
     	  </label>
-    	</div>
+    	</div> -->
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="Busca un rival" ng-model="searchText">
+        </label>
+      </div>
+      <div id="sinPartidos" class="card2" ng-show="!datosOK">
+        <p>¡No hay partidos por puntuar!</p>
+      </div>
       <ion-list class="resultados_list">
-        <ion-item ng-repeat-start="partida in partidas | filter:searchText" ng-show="(partida.P1.estadopartida==2) && (partida.P1.creador.login== '{{login}}')">
+        <ion-item class="card2" ng-repeat-start="partida in partidas | filter:searchText" ng-show="(partida.P1.estadopartida==2) && (partida.P1.creador.login== '{{login}}')">
           <div>
     	      <p>Invitado: {{partida.P1.invitado.login}}</p>
     	      <p>Fecha: {{partida.FechaPartida}}</p>
@@ -27,10 +36,10 @@
           </div>
           <br>
           <div class="button_result">
-            <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P1', partida._id, juegoscreadorP1, juegosinvitadoP1)">&nbsp;&nbsp;Confirmar Resultado</button>
+            <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P1', partida._id, juegoscreadorP1, juegosinvitadoP1)">&nbsp;&nbsp;Confirmar Resultado</button>
           </div>
         </ion-item>
-        <ion-item ng-show="(partida.P2.estadopartida==2) && (partida.P2.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P2.estadopartida==2) && (partida.P2.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P2.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -47,10 +56,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P2', partida._id, juegoscreadorP2, juegosinvitadoP2)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P2', partida._id, juegoscreadorP2, juegosinvitadoP2)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-show="(partida.P3.estadopartida==2) && (partida.P3.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P3.estadopartida==2) && (partida.P3.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P3.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -67,10 +76,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P3', partida._id, juegoscreadorP3, juegosinvitadoP3)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P3', partida._id, juegoscreadorP3, juegosinvitadoP3)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-show="(partida.P4.estadopartida==2) && (partida.P4.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P4.estadopartida==2) && (partida.P4.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P4.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -87,10 +96,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P4', partida._id, juegoscreadorP4, juegosinvitadoP4)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P4', partida._id, juegoscreadorP4, juegosinvitadoP4)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-show="(partida.P5.estadopartida==2) && (partida.P5.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P5.estadopartida==2) && (partida.P5.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P5.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -107,10 +116,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P5', partida._id, juegoscreadorP5, juegosinvitadoP5)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P5', partida._id, juegoscreadorP5, juegosinvitadoP5)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-show="(partida.P6.estadopartida==2) && (partida.P6.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P6.estadopartida==2) && (partida.P6.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P6.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -127,10 +136,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P6', partida._id, juegoscreadorP6, juegosinvitadoP6)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P6', partida._id, juegoscreadorP6, juegosinvitadoP6)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-show="(partida.P7.estadopartida==2) && (partida.P7.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P7.estadopartida==2) && (partida.P7.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P7.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -147,10 +156,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P7', partida._id, juegoscreadorP7, juegosinvitadoP7)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P7', partida._id, juegoscreadorP7, juegosinvitadoP7)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-show="(partida.P8.estadopartida==2) && (partida.P8.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P8.estadopartida==2) && (partida.P8.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P8.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -167,10 +176,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P8', partida._id, juegoscreadorP8, juegosinvitadoP8)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P8', partida._id, juegoscreadorP8, juegosinvitadoP8)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-show="(partida.P9.estadopartida==2) && (partida.P9.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P9.estadopartida==2) && (partida.P9.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P9.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -187,10 +196,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P9', partida._id, juegoscreadorP9, juegosinvitadoP9)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P9', partida._id, juegoscreadorP9, juegosinvitadoP9)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-show="(partida.P10.estadopartida==2) && (partida.P10.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P10.estadopartida==2) && (partida.P10.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P10.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -207,10 +216,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P10', partida._id, juegoscreadorP10, juegosinvitadoP10)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P10', partida._id, juegoscreadorP10, juegosinvitadoP10)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-show="(partida.P11.estadopartida==2) && (partida.P11.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-show="(partida.P11.estadopartida==2) && (partida.P11.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P11.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -227,10 +236,10 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P11', partida._id, juegoscreadorP11, juegosinvitadoP11)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P11', partida._id, juegoscreadorP11, juegosinvitadoP11)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
-        <ion-item ng-repeat-end ng-show="(partida.P12.estadopartida==2) && (partida.P12.creador.login== '{{login}}')">
+        <ion-item class="card2"  ng-repeat-end ng-show="(partida.P12.estadopartida==2) && (partida.P12.creador.login== '{{login}}')">
             <div>
               <p>Invitado: {{partida.P12.invitado.login}}</p>
               <p>Fecha: {{partida.FechaPartida}}</p>
@@ -247,7 +256,7 @@
             </div>
             <br>
             <div class="button_result">
-              <button class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P12', partida._id, juegoscreadorP12, juegosinvitadoP12)">&nbsp;&nbsp;Confirmar Resultado</button>
+              <button style="width:245px;" class="button button-balanced icon ion-edit" ng-click="insertarresultados(p='P12', partida._id, juegoscreadorP12, juegosinvitadoP12)">&nbsp;&nbsp;Confirmar Resultado</button>
             </div>
         </ion-item>
       </ion-list>

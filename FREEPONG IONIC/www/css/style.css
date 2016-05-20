@@ -217,17 +217,17 @@ h3{
 }
 
 .inputbox{
-	width: 30%;
+	width: 40%;
 	padding: 10px;
 	margin-top:10px;
 	margin-bottom:10px;
 	border: 3px solid #555;
 	background-color: grey;
-	color: 
 }
 
 .inputbox:focus{
 	border: 2px solid #555;
+	background-color: green;
 }
 
 .creador{
@@ -244,7 +244,7 @@ h3{
 	display: inline-block;
 	float: right;
 	width: 50%;
-	left: -6%;
+	left: 15%;
 }
 
 .button_result{
@@ -263,10 +263,30 @@ input[type="number"]{
 	color: white;
 	padding: 5px;
 	text-align: center;
+	border-radius: 50% 50% 50% 0%;
 }
 
 #resultados_list{
 
 }
+
+#sinPartidos{
+	text-align: center;
+	height: 20%;
+	padding: 10%;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 36px;
+	background-color: green;
+	color: white;
+}
+
+.card2{
+    padding-left: 14%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+}
+
+
 
 
