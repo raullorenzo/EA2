@@ -10,8 +10,11 @@ usuarioregistradoapp.controller('editarCtrl', ['$stateParams', '$state', '$http'
         $scope.loginc = data.login;
         $scope.password = data.password;
         $scope.saldo = data.saldo;
+        $scope.urlfoto = data.saldo;
+
+        console.log($scope.urlfoto)
     });
-    $scope.update = function (nombre, apellidos, email, telefono, loginc, password, saldo) {
+    $scope.update = function (nombre, apellidos, email, telefono, loginc, password, saldo, urlfoto) {
         var usuario = {};
         usuario.nombre = nombre;
         usuario.apellidos = apellidos;
@@ -20,6 +23,8 @@ usuarioregistradoapp.controller('editarCtrl', ['$stateParams', '$state', '$http'
         usuario.login = loginc;
         usuario.password = password;
         usuario.saldo = saldo;
+        usuario.urlfoto = urlfoto;
+
 
         console.log(usuario);
         $http.put('/usuario/ModificarUsuarioPorID/' + id, usuario)
