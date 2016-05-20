@@ -434,15 +434,23 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
 //     });
 // }])
 
-.controller('HistorialController', ['$rootScope', '$state', '$scope', '$cordovaOauth', 'API', '$http', '$ionicModal', '$ionicHistory', function ($rootScope, $state, $scope, $cordovaOauth, api, $http, $ionicModal, $ionicHistory) {
-    $scope.$on('$ionicView.beforeEnter', function(){      
-      var login = window.localStorage['login'];
-      $http.get(_base+'/historial/ObtenerHistorialesLogin/'+login).success(function (data) {
-        historiales=data;
-        console.log(historiales);
-        console.log(historiales[0]);
-        $scope.historiales=historiales;
-      });
+.controller('HistorialController', ['$rootScope', '$state', '$scope', '$cordovaOauth', 'API', '$http', '$ionicModal', '$ionicHistory', function ($rootScope, $state, $scope, $cordovaOauth, api, $http, $ionicModal, $ionicHistory) { 
+    var login = window.localStorage['login'];
+    $http.get(_base+'/historial/ObtenerHistorialesLogin/'+login).success(function (data) {
+      historiales=data;
+      console.log(historiales);
+      console.log(historiales[0]);
+      $scope.historiales=historiales;
+      $scope.doRefresh = function() {
+        $http.get(_base+'/historial/ObtenerHistorialesLogin/'+login)
+         .success(function(newItems) {
+           $scope.historiales = newItems;
+         })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         });
+      };
     });
 }])
 
@@ -465,7 +473,7 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
       }
       else {
         var usuario = {};
-        $rootScope.showLoading("Autenticando..");
+        $rootScope.toast2("Autenticando..");
         api.login($scope.log).success(function (data) {
           var id = data.usuario[0]._id;
           window.localStorage['idusuario'] = data.usuario[0]._id;
@@ -516,7 +524,7 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
               disableBack: true 
             });
             $scope.log = {}
-            $state.go('freepong.usuarios');
+            $state.go('freepong.home');
             // $state.go('freepong.usuarios', {}, {reload: true});
           }).error(function (data) {
             $rootScope.toast('Usuario o password incorrecto');
@@ -543,7 +551,7 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
           $localStorage.accessToken = result.access_token;
           console.log(JSON.stringify(result));
           $rootScope.tipologin = "facebook";
-          $state.go('freepong.usuarios');
+          $state.go('freepong.home');
         },  
         function (error) {
           console.log(JSON.stringify(error));
@@ -555,7 +563,7 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
             $localStorage.accessToken = result.access_token;
             console.log(result);
             $rootScope.tipologin = "facebook";
-            $state.go('freepong.usuarios');
+            $state.go('freepong.home');
         }, function (error) {
             alert("There was a problem signing in!  See the console for logs");
             console.log(error);
@@ -570,7 +578,7 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
                 $rootScope.usuariotwitterid = user.user_id;
                 console.log(user);
                 $rootScope.tipologin = "twitter";
-                $state.go('freepong.usuarios');
+                $state.go('freepong.home');
             },
             function (error) {
               alert("There was a problem signing in!  See the console for logs");
@@ -607,7 +615,7 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
         $rootScope.toast('Registrándote en FreePong...');
         console.log(data);
         console.log(data);
-        $state.go('freepong.notificaciones');
+        $state.go('freepong.home');
         $scope.usuario = {}
       }).error(function (data) {
         $rootScope.hideLoading();
@@ -648,14 +656,22 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
   });
 }])
 
-.controller('PartidasController', ['$rootScope', '$scope', '$http', '$state', 'API', function($rootScope, $scope, $http, $state, api) {
-  $scope.$on('$ionicView.beforeEnter', function(){ 	
-    api.getPartidas().success(function (data) {
-  			$rootScope.toast2('Cargando partidas...');
-  			$scope.partidas = data;
-  		}).error(function(data){
-  	})
-  });	
+.controller('PartidasController', ['$rootScope', '$scope', '$http', '$state', 'API', function($rootScope, $scope, $http, $state, api) {	
+  api.getPartidas().success(function (data) {
+  		$rootScope.toast2('Cargando partidas...');
+  		$scope.partidas = data;
+      $scope.doRefresh = function() {
+        api.getPartidas()
+         .success(function(newItems) {
+           $scope.partidas = newItems;
+         })
+         .finally(function() {
+           // Stop the ion-refresher from spinning
+           $scope.$broadcast('scroll.refreshComplete');
+         });
+      };
+  	}).error(function(data){
+  })
 }])
 
 .controller('MesasController', ['$rootScope', '$scope', '$http', '$state', 'API', function($rootScope, $scope, $http, $state, api) {
@@ -666,6 +682,12 @@ angular.module('freepong', ['ionic', 'freepong.controllers', 'freepong.routes', 
       }).error(function(data){
     })
   });  
+}])
+
+.controller('HomeController', ['$rootScope', '$scope', '$http', '$state', 'API', function($rootScope, $scope, $http, $state, api) {
+  $scope.$on('$ionicView.beforeEnter', function(){
+    
+  }); 
 }])
 
 .controller('PosicionController', function ($scope, $cordovaGeolocation, $ionicLoading) {
