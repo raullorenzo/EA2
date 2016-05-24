@@ -1,0 +1,26 @@
+<ion-view view-title="Detalle de {{subject}}">
+    <ion-content>
+        <ion-item>
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <div class="textPerfil">
+                        <h1 style="color: green;">{{subject}}</h1>
+                        <br>
+                        <div ng-repeat="student in students">
+                            <p>Alumno: {{$index+1}}</p><br>
+                            <p><strong>Nombre: </strong>{{student.name}}</p>
+                            <!-- <p><strong>Dirección: </strong>{{student.address}}</p>
+                            <p><strong>Teléfono casa: </strong>{{student.phones[0].home}}</p>
+                            <p><strong>Teléfono trabajo: </strong>{{student.phones[1].work}}</p>
+                            <p><strong>Creado: </strong>{{student.created | date:'mediumDate'}}</p><br> -->
+                            <button id="buttonPerfil" class="button button-small button-positive icon ion-android-image" ng-click="detalleStudent(student.name)">
+                            &nbsp;&nbsp;&nbsp;{{student.name}}
+                            </button>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+    </ion-content>
+</ion-view>

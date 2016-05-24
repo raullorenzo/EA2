@@ -1,0 +1,33 @@
+<ion-view hide-nav-bar="false" title="Añadir Student en Subject">
+  <ion-content class="padding" has-header="true">
+    <div class="list">
+    </div>
+    <div class="list card padding">
+      <label class="item item-input">Selecciona Student:
+        <select ng-model="student.name" ng-change="selectStudent(student.name)">
+            <option value="{{student.name}}" ng-repeat="student in students">
+              {{student.name}}
+            </option>
+        </select>
+      </label>
+      <label class="item item-input">Selecciona Subject:
+        <select ng-model="subject.name" ng-change="selectSubject(subject.name)">
+            <option value="{{subject.name}}" ng-repeat="subject in subjects">
+              {{subject.name}}
+            </option>
+        </select>
+      </label>
+      
+      <br>
+      <div class="button-bar social-login">
+        <button class="button button-balanced icon ion-plus-circled" ng-disabled="!student.name || !subject.name" ng-click="addStudentToSubject()">
+          &nbsp;&nbsp;&nbsp;Añadir Student a Subject
+        </button>
+        <button id="" class="button button-assertive icon ion-close-circled" ui-sref='app.subject'>
+          &nbsp;&nbsp;&nbsp;Cancelar
+        </button>
+      </div>
+      <br><br>
+    </div>
+  </ion-content>
+</ion-view>
