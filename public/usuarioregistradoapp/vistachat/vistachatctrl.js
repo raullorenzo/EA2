@@ -1,4 +1,4 @@
-
+var socket = io ({forceNew: true});
 usuarioregistradoapp.controller('vistachatctrl', ['$stateParams', '$state', '$http', '$scope',function ($stateParams, $state, $http, $scope){
 
     var IDuser = $stateParams.IDuser;
@@ -6,7 +6,7 @@ usuarioregistradoapp.controller('vistachatctrl', ['$stateParams', '$state', '$ht
 
 
    $http.get('/usuario/ObtenerUsuarioPorID/' + IDuser).success(function (data) {$scope.userlocal=data;});
-    var socket = io ({forceNew: true});
+
     socket.emit('nuevo usuario', IDuser);
     socket.emit('dameusuriaosactivos');
     socket.on('actualizarusuariosactivos', function (data){
