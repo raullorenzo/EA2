@@ -168,6 +168,16 @@ module.exports = function (app) {
             entidad.estadopartida=3;
             entidad.creador.juegosganados=req.body.juegoscreador;
             entidad.invitado.juegosganados=req.body.juegosinvitado;
+            // if (entidad.creador.juegosganados > entidad.invitado.juegosganados){
+            //     entidad.creador.puntuacion = entidad.creador.puntuacion + 3;
+            // }
+            // else if (entidad.creador.juegosganados < entidad.invitado.juegosganados){
+            //     entidad.invitado.puntuacion = entidad.invitado.puntuacion + 3;
+            // }
+            // else {
+            //     entidad.creador.puntuacion = entidad.creador.puntuacion;
+            //     entidad.invitado.puntuacion = entidad.invitado.puntuacion;
+            // }
 
             idusercreador=entidad.creador._id;
             iduserinvitado=entidad.invitado._id;

@@ -5,7 +5,8 @@ var Usuario = new Schema(
     {
         _id: {type: Schema.ObjectId, ref: 'Usuario'},
         login: {type: String},
-        juegosganados:   {type: Number, default: 0}
+        juegosganados: {type: Number, default: 0},
+        puntuacion: {type: Number, default:0}
     });
 var partidaEsquema = new Schema(
     {

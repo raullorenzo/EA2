@@ -3,6 +3,44 @@ module.exports = function (app) {
     var mongoose = require('mongoose');
     var Historial = require('../modelos/historial.js');
 
+
+
+    // ObtenerHistorialesL= function (req, res){
+    //     console.log('GET/ObtenerHistorialesLogin/'+ req.params.login);
+    //     Historial.find({$or:[{logincreador:req.params.login},{logininvitado:req.params.login}]},function (err, historiales){
+    //         if (err) return res.send(500, err.message);
+    //             console.log(historiales);
+    //             res.status(200).jsonp(historiales);
+    //         });
+    // };
+
+    // ObtenerHistorialesL= function (req, res){
+    //     console.log('GET/ObtenerHistorialesLogin/max');
+    //     Historial.find({$or:[{logincreador:'max'},{logininvitado:'max'}]},function (err, historiales){
+    //         if (err) return res.send(500, err.message);
+    //             console.log(historiales);
+    //             res.status(200).jsonp(historiales);
+    //         });
+    // };
+
+    ObtenerHistorialesL2= function (req, res){
+        console.log('GET/ObtenerHistorialesLogin2/' + req.query.login);
+        Historial.find({$or:[{logincreador:req.query.login},{logininvitado:req.query.login}]},function (err, historiales){
+            if (err) return res.send(500, err.message);
+                console.log(historiales);
+                res.status(200).jsonp(historiales);
+            });
+    };
+
+    ObtenerHistorialesL= function (req, res){
+        console.log('GET/ObtenerHistorialesLogin/' + req.params.login);
+        Historial.find({$or:[{logincreador:req.params.login},{logininvitado:req.params.login}]},function (err, historiales){
+            if (err) return res.send(500, err.message);
+                console.log(historiales);
+                res.status(200).jsonp(historiales);
+            });
+    };
+
     ObtenerHistorialesP = function (req, res) {
 
         console.log(req.query.login);
@@ -54,4 +92,6 @@ module.exports = function (app) {
     };
 
     app.get('/historial/ObtenerHisorialesPaginados', ObtenerHistorialesP);
+    app.get('/historial/ObtenerHisorialesLogin2', ObtenerHistorialesL2);
+    app.get('/historial/ObtenerHistorialesLogin/:login/', ObtenerHistorialesL);
 }

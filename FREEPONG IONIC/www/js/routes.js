@@ -22,20 +22,20 @@ angular.module('freepong.routes', [])
         }
       }
     })
+    .state('freepong.home', {
+      url: '/home',
+      views: {
+        'menuContent': {
+         templateUrl: 'templates/home.html',
+         controller: 'HomeController'
+        }
+      }
+    })
     .state('freepong.amigos', {
       url: '/amigos',
       views: {
         'menuContent': {
          templateUrl: 'templates/amigos.html'
-        }
-      }
-    })
-    .state('freepong.buscarPartida', {
-      url: "/buscarPartida",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/buscarPartida.html",
-          controller: 'BuscarPartidaController'
         }
       }
     })
@@ -45,6 +45,15 @@ angular.module('freepong.routes', [])
         'menuContent' :{
           templateUrl: "templates/resultados.html",
           controller: 'ResultadosController'
+        }
+      }
+    })
+    .state('freepong.historial', {
+      url: "/historial",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/historial.html",
+          controller: 'HistorialController'
         }
       }
     })
